@@ -1,0 +1,110 @@
+<section class="bg-gray-20 dark:bg-gray-900">
+    <div
+        class="mb-5 text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+        <ul class="flex flex-wrap -mb-px">
+            <li class="mr-2">
+                <a [routerLink]="['', 'items', 'listall']"
+                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    aria-current="page">Posted Items</a>
+            </li>
+            <li class="mr-2">
+                <a [routerLink]="['', 'items', 'purchaseitem']"
+                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Purchased
+                    Items</a>
+            </li>
+            <li class="mr-2">
+                <a [routerLink]="['', 'items', 'add']"
+                    class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500">Add
+                    New Item</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div
+            class="w-full max-w-xl bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1
+                    class="text-xl font-bold leading-tight text-center tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Add Item
+                </h1>
+                <form [formGroup]="AddForm" class="space-y-4 md:space-y-6">
+                    <!-- <div class="grid gap-6 mb-6 md:grid-cols-2"> -->
+                    <div>
+                        <label for="title"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                        <input type="text" formControlName="title" name="title" id="title"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </div>
+                    <div class="grid gap-6 mb-6 md:grid-cols-2">
+                        <div>
+                            <label for="price"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                            <input type="number" formControlName="price" name="price" id="price"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </div>
+
+                        <div>
+
+                            <label for="category"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                            <select id="category" formControlName="category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                                <option *ngFor="let item of category" value={{item}}>{{item}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <!-- </div> -->
+
+                    <div>
+
+
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            for="pictures">Picture</label>
+                        <div class="flex justify-center gap-4">
+                            <input formControlName="pictures" (change)="handleFileSelect($event)"
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                id="pictures" type="file">
+                            <button (click)="onUpload()"
+                                class="w-2/5 text-white bg-blue-500 bg-primary-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Upload </button>
+                        </div>
+                        <p class="mt-2 text-sm text-green-600 dark:text-green-500">{{pictureNames}}</p>
+
+
+                    </div>
+
+                    <div>
+
+                        <label for="description"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                        <textarea id="description" rows="3" formControlName="description"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Write your description..."></textarea>
+
+                    </div>
+                    <div class="flex justify-center">
+                        <div class=" gap-2  grid grid-cols-2">
+                            <button (click)="onCancel()"
+                                class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Cancel</button>
+                            <button (click)="onAdd()" [disabled]="!AddForm.valid"
+                                class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                [ngClass]="{'hover:bg-blue-800': AddForm.valid}">
+                                Add </button>
+                        </div>
+                        <!--                         <button (click)="onCancel()"
+                            class="w-2/5 text-white bg-blue-500 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Cancel</button>
+                        <button (click)="onAdd()" [disabled]="!AddForm.valid"
+                            class="w-2/5 ml-4 text-white bg-blue-500 bg-secondary-600 hover:bg-secondary-700 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800">
+                            Create </button> -->
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

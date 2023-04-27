@@ -1,0 +1,86 @@
+<!-- <section class="bg-gray-50 dark:bg-gray-900"> -->
+<section>
+    <div
+        class="mb-5 text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+        <ul class="flex flex-wrap -mb-px">
+            <li class="mr-2">
+                <a [routerLink]="['', 'items', 'listall']"
+                    class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500"
+                    aria-current="page">Posted Items</a>
+            </li>
+            <li class="mr-2">
+                <a [routerLink]="['', 'items', 'purchaseitem']"
+                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Purchased
+                    Items</a>
+            </li>
+            <li class="mr-2">
+                <a [routerLink]="['', 'items', 'add']"
+                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Add
+                    New Item</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex items-center  flex-wrap gap-4 mx-auto">
+        <div *ngFor="let item of items, index as i"
+            class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+            <div class="flex justify-center items-center text-center mb-5">
+                <div class="image_container ">
+                    <a [routerLink]="['','items', item._id]">
+                        <img class=" image_inside p-8 rounded-t-lg" src={{getFullPath(item.pictures)}}
+                            alt="product image" *ngIf="!!item.pictures" />
+                    </a>
+                </div>
+            </div>
+            <div class="px-5 pb-5">
+                <!-- <div class="h-12 min-h-full  max-h-full overflow-auto ..."> -->
+                <div>
+                    <a [routerLink]="['','items', item._id]"
+                        style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; height: 56px; "
+                        class=" text-xl font-semibold tracking-tight text-gray-900 dark:text-white ">
+                        {{item.title}}
+
+                    </a>
+                </div>
+                <!--                     <div class="flex items-center mt-2.5 mb-5">
+                        <p class="font-medium text-sm">Posted by </p>
+    
+                    </div> -->
+                <div class="flex items-center mt-2.5 justify-between">
+                    <p class="text-sm text-gray-900 dark:text-white">{{item.postDate|date:'MMM d, y'}} by
+                        me
+                    </p>
+                    <p class="text-sm text-gray-900 dark:text-white mr-4"> {{item.status}}</p>
+
+                </div>
+
+                <div class="flex items-center mb-5 justify-between">
+                    <p class="text-sm text-gray-900 dark:text-white mr-4">
+                    </p>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-3xl font-bold text-gray-900 dark:text-white">${{item.price}}</span>
+                    <div class=" gap-2  grid grid-cols-2">
+                        <button (click)="goToUpdate(item._id)"
+                            class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Edit</button>
+                        <button (click)="onDeleteItem(item._id)"
+                            class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Delete </button>
+                    </div>
+                    <!--                     <div class="gap-4">
+                        <button (click)="goToUpdate(item._id)"
+                            class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Edit</button>
+                        <button (click)="onDeleteItem(item._id)"
+                            class="w-2/5 ml-4 py-0 text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Delete </button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- </div> -->
+</section>

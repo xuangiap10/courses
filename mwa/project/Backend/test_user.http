@@ -1,0 +1,33 @@
+GET http://localhost:3000/users
+
+###
+GET http://localhost:3000/users/64455ffec1acf5ef6351c705
+
+###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{  
+    "email": "xuangiap@miu.edu", 
+    "password": "123456" 
+}
+
+###
+POST http://localhost:3000/users/signup
+Content-Type: application/json
+
+{
+    "email": "xuangiap@miu.edu",
+    "fullname": "xuan giap nguyen",
+    "password": "123456",
+    "address": {
+        "street": "Street 4",
+        "city": "FairField",
+        "state": "IOWA",
+        "zipcode": 12345 },
+    "phone": "641-123-456",
+    "avatar": "test.jpg"
+}
+
+###
+DELETE  http://localhost:3000/users/64455ffec1acf5ef6351c705

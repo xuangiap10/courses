@@ -1,0 +1,138 @@
+<div *ngIf="item" 
+    class="justify-center items-center max-w-lg px-6 mx-auto mt-10 md:mb-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+
+    <div class="flex items-center justify-between">
+        <p class="font-medium text-xl">{{item.postDate | date:'MMM d, y'}} by me</p>
+        <span class="text-2xl font-bold text-gray-900 dark:text-white">${{item.price}}</span>
+    </div>
+    <div class="flex items-center justify-between mb-5">
+        <!-- <p class="font-medium text-sm">{{item.address.city}} {{item.address.state}}</p> -->
+        <p class="font-medium text-sm">{{item.status}}</p>
+    </div>
+
+    <!--     <div *ngIf="item.status == 'Active' && item._id != stateService.getValue()._id"
+        class="flex items-center justify-end mb-10">
+        <button (click)="onPurchase()"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Purchase</button>
+    </div>
+    <p *ngIf="item.items.status == 'Sold'"
+        class=" text-sm text-gray-900 dark:text-white flex items-center justify-end mb-10"> Purchased in
+        {{item.items.purchasedBy.date |
+        date:'MMM d, y'}}
+    </p> 
+
+    <p *ngIf="item._id == stateService.getValue()._id && item.items.status == 'Active'"
+        class=" text-sm text-gray-900 dark:text-white flex items-center justify-end mb-10">
+        Posted by me
+    </p>
+-->
+    <div class="flex items-center mb-10">
+        <p class="font-medium text-2xl">{{item.title}}</p>
+    </div>
+
+<!--     <div class="flex justify-center items-center text-center mb-5">
+        <div class="image_container ">
+            <img class="image_inside  justify-center w-auto max-h-full  rounded-lg" src={{pic}} alt="image description">
+        </div>
+    </div> -->
+
+    <div class=" flex items-center justify-center mb-5">
+        <div class="image_container">
+            <img class="image_inside w-auto max-h-full rounded-lg" src={{pic}} alt="image description">
+        </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-4 mb-6">
+        <ng-container *ngFor="let onepic of item.pictures; let i = index">
+
+            <button (click)="choosePic($event)" class="focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg">
+                <img id='{{i}}' class=" h-auto max-w-full rounded-lg" src={{getPath(onepic)}} alt="">
+            </button>
+        </ng-container>
+    </div>
+
+    <div class="mb-40">
+        <div *ngFor="let line of descriptions" class="flex items-center mb-1 font-sm text-md">
+            <p>{{line}}</p>
+        </div>
+    </div>
+    <div class="w-full flex  justify-end py-2">
+        <!-- <span class="text-3xl font-bold text-gray-900 dark:text-white">${{item.price}}</span> -->
+        <div class=" gap-2  grid grid-cols-2">
+            <button (click)="goToUpdate(item._id)"
+                class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Edit</button>
+            <button (click)="onDeleteItem(item._id)"
+                class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Delete </button>
+        </div>
+    </div>
+</div>
+
+<!-- <ng-template #soldout>
+    <div class="flex items-center justify-end mb-10">
+        <p class="text-sm text-gray-900 dark:text-white"> Purchased in {{item.items.purchasedBy.date |
+            date:'MMM d, y'}}
+        </p>
+    </div>
+</ng-template> -->
+<!-- <div class="flex flex-col  px-6 py-4 mx-auto md:h-screen lg:py-0">
+    <div class="my-2">
+        <a [routerLink]="['','items', 'listall']"
+            class="  text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Back</a>
+    </div>
+</div> -->
+<!-- <div
+    class="justify-center items-center max-w-lg px-6 mx-auto mt-10 md:mb-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+
+    <div class="flex items-center mb-5 justify-between">
+
+        <div>
+            <p class="font-medium text-xl ">{{item.postDate | date:'MMM d, y'}}</p>
+        </div>
+        <div class="justify-self-end">
+            <p class="font-medium text-xl ">{{item.status}}</p>
+        </div>
+
+    </div>
+    <div class="flex items-center mb-5 justify-between">
+        <div>
+            <p class="font-medium text-xl">{{item.title}}</p>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center text-center mb-5">
+        <div class="image_container ">
+            <img class="image_inside  justify-center w-auto max-h-full  rounded-lg" src={{pic}} alt="image description">
+        </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-4 mb-6">
+        <ng-container *ngFor="let onepic of item.pictures; let i = index">
+            <button (click)="choosePic($event)" class="focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg">
+                <img id='{{i}}' class="h-auto max-w-full rounded-lg" src={{getPath(onepic)}} alt="">
+            </button>
+        </ng-container>
+    </div>
+
+    <div class="mb-40">
+        <div *ngFor="let line of descriptions" class="flex items-center mb-1 font-sm text-md">
+            <p>{{line}}</p>
+        </div>
+    </div>
+    <div class="flex items-center justify-between">
+        <span class="text-3xl font-bold text-gray-900 dark:text-white">${{item.price}}</span>
+        <div class="gap-4">
+            <button (click)="goToUpdate(item._id)"
+                class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Edit</button>
+            <button (click)="onDeleteItem(item._id)"
+                class="w-2/5 ml-4 py-0 text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Delete </button>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 gap-4 h-20">
+    </div>
+</div>
+ -->

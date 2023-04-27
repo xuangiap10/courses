@@ -1,0 +1,155 @@
+<div *ngIf="userInfo" class="">
+    <h1
+        class="text-2xl mt-4 mb-6  font-bold leading-tight text-center tracking-tight text-gray-900 md:text-2xl dark:text-white">
+        Profile
+    </h1>
+    <div
+        class="parent max-w-2xl mt-4 justify-center items-center mx-auto p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
+        <div class="inside bg-gray-50 ">
+            <img *ngIf="userInfo.avatar" class="image_avatar" src="{{toUrlPath(userInfo.avatar)}}">
+        </div>
+
+        <form [formGroup]="profileForm">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center justify-center h-10 rounded">
+                    <label for="email"
+                        class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Email</label>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <input formControlName="email" type="text" id="email" aria-label="disabled input"
+                        class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        readonly>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center justify-center h-10 rounded">
+                    <label for="fullname" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Full
+                        name</label>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <input formControlName="fullname" id="fullname"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Full name" required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center justify-center h-10 rounded">
+                    <label for="password"
+                        class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Password</label>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <input formControlName="password" type="password" id="password"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center justify-center h-10 rounded">
+                    <label for="newpassword" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">New
+                        Password</label>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <input type="password" id="newpassword" formControlName="newpassword"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center justify-center h-10 rounded">
+                    <label for="repassword" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Confirm
+                        New Password</label>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <input type="password" id="repassword" formControlName="repassword"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <button (click)="changePassword()"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change
+                        Password</button>
+                </div>
+            </div>
+
+
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center justify-center h-10 rounded">
+                    <label class="block mb-2 text-md font-medium text-gray-900 dark:text-white">
+                        Address</label>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <label for="street" class="block mb-2 text-md font-medium text-gray-900 dark:text-white mr-2">
+                        Street
+                    </label>
+                    <input formControlName="street" id="street"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <label for="city" class="block mb-2 text-md font-medium text-gray-900 dark:text-white mr-8"> City
+                    </label>
+                    <select formControlName="city" id="city"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                        <ng-container *ngFor="let item of cities">
+                            <option *ngIf="item != 'All'" value={{item}}>{{item}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center justify-center h-10 rounded">
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <label for="state" class="block mb-2 text-md font-medium text-gray-900 dark:text-white mr-2"> State
+                    </label>
+                    <select formControlName="state" id="state" (change)="stateChange()"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                        <ng-container *ngFor="let item of states">
+                            <option *ngIf="item.state != 'All'" value={{item.state}}>{{item.state}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <label for="zipcode" class="block mb-2 text-md font-medium text-gray-900 dark:text-white mr-2">
+                        Zipcode
+                    </label>
+                    <input formControlName="zipcode" id="zipcode"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-4">
+                <div class="flex items-center justify-center h-10 rounded">
+                    <label for="phone" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">
+                        Phone</label>
+                </div>
+                <div class="flex items-center justify-center h-10 rounded ">
+                    <input formControlName="phone" id="phone"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+                <div class=" gap-2  grid grid-cols-2">
+
+                    <button (click)="cancel()"
+                        class="text-white w-40 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancel
+                    </button>
+                    <button [disabled]="!profileForm.valid" (click)="updateProfile()"
+                        class="text-white w-40 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save
+                    </button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

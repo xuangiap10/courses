@@ -1,0 +1,51 @@
+<div *ngIf="item" class="justify-center items-center max-w-2xl mx-auto mt-10 md:mb-64">
+    <div class="flex items-center justify-between">
+        <p class="font-medium text-xl">{{item.items.postDate | date:'MMM d, y'}} by {{item.fullname}}</p>
+        <span class="text-3xl font-bold text-gray-900 dark:text-white">${{item.items.price}}</span>
+    </div>
+    <div class="flex items-center justify-between mb-5">
+        <p class="font-medium text-sm">{{item.address.city}} {{item.address.state}}</p>
+        <p class="font-medium text-sm">{{item.items.status}}</p>
+    </div>
+
+    <div *ngIf="item.items.status == 'Active' && item._id != stateService.getValue()._id"
+        class="flex items-center justify-end mb-10">
+        <button (click)="onPurchase()"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Purchase</button>
+    </div>
+    <p *ngIf="item.items.status == 'Sold'"
+        class=" text-sm text-gray-900 dark:text-white flex items-center justify-end mb-10"> Purchased in
+        {{item.items.purchasedBy.date |
+        date:'MMM d, y'}}
+    </p>
+
+    <p *ngIf="item._id == stateService.getValue()._id && item.items.status == 'Active'"
+        class=" text-sm text-gray-900 dark:text-white flex items-center justify-end mb-10">
+        Posted by me
+    </p>
+
+    <div class="flex items-center mb-10">
+        <p class="font-medium text-2xl">{{item.items.title}}</p>
+    </div>
+
+    <div class=" flex items-center justify-center mb-5">
+        <div class="image_container">
+            <img class="inside w-auto max-h-full rounded-lg" src={{toUrlPath(pic)}} alt="image description">
+        </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-4 mb-6">
+        <ng-container *ngFor="let onepic of item.items.pictures; let i = index">
+
+            <button (click)="choosePic($event)" class="focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg">
+                <img id='{{i}}' class=" h-auto max-w-full rounded-lg" src={{toUrlPath(onepic)}} alt="">
+            </button>
+        </ng-container>
+    </div>
+
+    <div class="mb-40">
+        <div *ngFor="let line of descriptions" class="flex items-center mb-1 font-sm text-md">
+            <p>{{line}}</p>
+        </div>
+    </div>
+</div>

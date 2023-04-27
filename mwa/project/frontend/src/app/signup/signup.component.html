@@ -1,0 +1,184 @@
+<!-- <p>Sign Up</p>
+<form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" placeholder="name">
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" placeholder="email">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" placeholder="password">
+    </div>
+    <button (click)="backToHome()">Cancel</button> <button type="submit">Sign up</button>
+</form> -->
+<section class="bg-gray-20 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+
+        <div
+            class="cover w-full  max-w-xl bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+
+
+            <div class="p-2 space-y-2 md:space-y-6 sm:p-8">
+                <h1
+                    class="text-xl font-bold leading-tight  text-center tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Create an account
+                </h1>
+                <form [formGroup]="signUpForm" class="space-y-4 md:space-y-6">
+                    <div class="grid gap-6 mb-6 md:grid-cols-2">
+                        <div>
+                            <label for="fullname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Full name
+                            </label>
+                            <input type="text" formControlName="fullname" name="fullname" id="fullname"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Mark" required="">
+                        </div>
+                        <div class="inside bg-gray-50 border border-gray-300"><img *ngIf="avatar_file"
+                                class="image_avatar" src="{{avatar_file}}"></div>
+                    </div>
+                    <div class="grid gap-6 mb-6 md:grid-cols-2">
+
+
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Email</label>
+                            <input type="email" formControlName="email" name="email" id="email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="name@company.com" required="">
+                        </div>
+                        <div>
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Phone
+                            </label>
+                            <input type="text" formControlName="phone" name="phone" id="phone"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="641-xxx-xxxx">
+                        </div>
+                        <div>
+                            <label for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                            <input type="password" formControlName="password" name="password" id="password"
+                                placeholder="••••••••" (keyup)="onPasswordKeyUp($event)" class=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                dark:focus:border-blue-500" required="">
+                            <span *ngIf="wrongpassword" class="font-thin text-sm info-text-color "> password length
+                                should be 6 </span>
+
+                        </div>
+                        <div>
+                            <label for="confirmpassword"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
+                                Password</label>
+                            <input type="password" formControlName="confirmpassword" name="confirmpassword"
+                                id="confirm-password" placeholder="••••••••" (blur)="onBlur($event)"
+                                (keyup)="onKeyUp($event)"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required="">
+                            <span *ngIf="mismatch" class="font-thin text-sm info-text-color"> password is not matched
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="avatar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Avatar
+                        </label>
+                        <div class="flex justify-center gap-4">
+                            <input formControlName="avatar" (change)="handleFileSelect($event)"
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                id="pictures" type="file">
+                            <button (click)="onUpload()"
+                                class="w-2/5 text-white bg-blue-500 bg-primary-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Upload </button>
+                        </div>
+
+                        <!--                         <input formControlName="avatar"
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            id="file_input" type="file"> -->
+
+                        <!-- </div> -->
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Address</label>
+                        <div
+                            class=" grid gap-4 mb-2 md:grid-cols-2 px-4 rounded-lg focus:ring-blue-500  border border-gray-300 ps-px ">
+
+                            <!--                             <div>
+                                <label for="state"
+                                    class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">State</label>
+                                <input type="text" formControlName="state" id="state"
+                                    class=" w-full mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div> -->
+
+                            <div>
+                                <label for="state"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">State</label>
+                                <select id="state" formControlName="state" (change)="updateCity($event)"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <!-- <option selected>Choose a state</option> -->
+                                    <ng-container *ngFor="let item of states">
+                                        <option *ngIf="item.state != 'All'" value={{item.state}}>{{item.state}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                            <div>
+                                <!-- <label for="city"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                                <input type="text" formControlName="city" id="city"
+                                    class="   w-full  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                 -->
+                                <label for="city"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                                <select id="city" formControlName="city"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <!-- <option selected>Choose a state</option> -->
+                                    <!-- <option *ngFor="let item of cities" value={{item}}>{{item}}</option> -->
+                                    <!--<option selected>All</option>-->
+
+                                    <ng-container *ngFor="let item of cities">
+                                        <option *ngIf="item != 'All'" value={{item}}>{{item}}</option>
+                                    </ng-container>
+                                </select>
+
+                            </div>
+
+
+
+                            <div>
+                                <label for="street"
+                                    class="block  mb-2 text-sm font-medium text-gray-900 dark:text-white">Street</label>
+                                <input type="text" formControlName="street" id="street"
+                                    class="  w-full  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="zipcode"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ZipCode</label>
+                                <input type="number" formControlName="zipcode" id="zipcode"
+                                    class="w-full mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="12345" pattern="[0-9]{5}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class=" gap-2  grid grid-cols-2">
+                            <button (click)="onCancel()"
+                                class="text-white bg-blue-500 bg-primary-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Cancel</button>
+                            <button (click)="onSignUp()" [disabled]="!signUpForm.valid"
+                                class="text-white bg-blue-500 bg-secondary-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800"
+                                [ngClass]="{'hover:bg-blue-800': signUpForm.valid}">
+                                Create </button>
+                        </div>
+                    </div>
+                    <!--                     <button type="submit"
+                        class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
+                        an account</button> -->
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
