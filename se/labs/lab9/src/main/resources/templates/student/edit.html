@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="O. Kalu">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="your-styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Edit Student</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="/eregistrar/edit" method="post" th:object="${student}" class="needs-validation" novalidate>
+                    <!-- Display validation errors if any -->
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <ul>
+                            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
+
+                    <!-- Student ID (hidden) -->
+                    <input type="hidden" id="studentId" name="studentId" th:field="*{studentId}"> 
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" th:field="*{firstName}" class="form-control" required>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" th:field="*{lastName}" class="form-control" required>
+                    </div>
+
+                    <!-- Save and Cancel Buttons -->
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a th:href="@{/eregistrar/students}" class="btn btn-secondary ml-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

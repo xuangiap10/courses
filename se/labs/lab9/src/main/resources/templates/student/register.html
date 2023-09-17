@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="O. Kalu">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    
+    <title>Register a New Student</title>
+    <link rel="stylesheet" href="your-styles.css">
+    
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Register a New Student</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="/eregistrar/register" method="post" th:object="${student}" class="needs-validation" novalidate>
+                    <!-- Display validation errors if any -->
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <ul>
+                            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
+
+                    <!-- Student Number -->
+                    <div class="form-group">
+                        <label for="studentNumber">Student Number:</label>
+                        <input type="text" id="studentNumber" name="studentNumber" th:field="*{studentNumber}" class="form-control" required>
+                    </div>
+
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" th:field="*{firstName}" class="form-control" required>
+                    </div>
+
+                    <!-- Middle Name -->
+                    <div class="form-group">
+                        <label for="middleName">Middle Name:</label>
+                        <input type="text" id="middleName" name="middleName" th:field="*{middleName}" class="form-control">
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" th:field="*{lastName}" class="form-control" required>
+                    </div>
+
+                    <!-- CGPA -->
+                    <div class="form-group">
+                        <label for="cgpa">CGPA:</label>
+                        <input type="text" id="cgpa" name="cgpa" th:field="*{cgpa}" class="form-control">
+                    </div>
+
+                    <!-- Enrollment Date -->
+                     <div class="form-group">
+                        <label for="enrollmentDate">Enrollment Date:</label>
+                        <input type="date" id="dateOfEnrollment" name="dateOfEnrollment" th:field="*{dateOfEnrollment}" class="form-control" required>
+                    </div> 
+                    <!--  <div class="form-group">
+                    <label for="dateOfEnrollment">Date of Enrollment:</label>
+                    <input type="date" id="dateOfEnrollment" name="dateOfEnrollment" th:field="*{dateOfEnrollment}" required><br>
+					</div>-->
+					
+                    <!-- International Student -->
+                    <div class="form-group">
+                        <label for="isInternational">International Student:</label>
+                        <select id="isInternational" name="isInternational" th:field="*{isInternational}" class="form-control" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <!-- Register and Cancel Buttons -->
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Register</button>
+           				 <a th:href="@{/eregistrar/students}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

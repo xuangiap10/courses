@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="O. Kalu">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+
+    <!-- Add your head content here (e.g., title, CSS) -->
+    <title>List of Students</title>
+    <link rel="stylesheet" href="your-styles.css">
+    <!-- Include any additional CSS for styling -->
+    <style>
+        /* CSS for the table and line separator */
+        .student-table {
+            border-collapse: collapse; /* Collapse border spacing */
+            width: 100%; /* Table width as needed */
+        }
+
+        .student-table th, .student-table td {
+            border: 1px solid #ddd; /* Add border to table cells */
+            padding: 8px; /* Add padding for cell content */
+            text-align: left; /* Align cell content to the left */
+        }
+
+        .student-table th {
+            background-color: #f2f2f2; /* Background color for table header */
+        }
+
+        /* CSS for the line separator */
+        .list-divider {
+            border: none; /* Remove default border */
+            height: 1px; /* Set the height of the line */
+            background-color: #ccc; /* Choose your desired line color */
+            margin: 10px 0; /* Add spacing above and below the line */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a style="padding-right: 2em;" class="navbar-brand" href="/elibrary/home">
+        Xuan Giap Nguyen's eRegistrar</a>
+        <!--<span style="color: #ffffff;"> &nbsp; | &nbsp;</span>-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em; padding-right: 2em;">
+                    <a class="nav-link" href="/eregistrar/home">Home</a>
+                </li>
+                <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em; padding-right: 2em;">
+                    <a class="nav-link" href="/eregistrar/students">List Students</a>
+                </li>
+                <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em; padding-right: 2em;">
+                    <a class="nav-link" href="/eregistrar/register">Register Student</a>
+                </li>
+                                <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em; padding-right: 2em;">
+                    <a class="nav-link" href="/eregistrar/search">Search Students</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
+                <!--<a style="color: #ffffff; margin-right: 0em;" class="nav-link" href="#">John Doe</a>-->
+                <!--<a href="#" class="btn btn-secondary">Sign In</a>-->
+            </form>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="text-center">List of Students</h1>
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th>Student Number</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>CGPA</th>
+                     <th>Enrollment Date</th>
+                    <th>International Student</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate through your list of students and generate rows -->
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.studentNumber}"></td>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.middleName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.cgpa}"></td>
+                    <td th:text="${student.dateOfEnrollment}"></td>
+                    <td th:text="${student.isInternational}"></td>
+                    <td>
+                        <!-- Add buttons or links for actions (e.g., Edit, Delete) -->
+                        <a th:href="@{/eregistrar/edit/{id}(id=${student.studentId})}" class="btn btn-primary btn-sm">Edit</a>
+                        <a th:href="@{/eregistrar/delete/{id}(id=${student.studentId})}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Add a horizontal line to separate each row -->
+        <hr class="list-divider">
+    </div>
+</body>
+</html>
+

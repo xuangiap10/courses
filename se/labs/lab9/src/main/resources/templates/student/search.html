@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="O. Kalu">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <title>Search Students</title>
+    <link rel="stylesheet" href="your-styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Search Students</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Search Form -->
+                <form action="/eregistrar/search" method="get">
+                    <div class="form-group">
+                        <label for="searchText">Search Text:</label>
+                        <input type="text" id="searchText" name="searchText" class="form-control" required>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+
+                <!-- Search Results -->
+                <div th:if="${students != null and not #lists.isEmpty(students)}" class="mt-4">
+                    <h2>Search Results:</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="student : ${students}">
+                                <td th:text="${student.studentId}"></td>
+                                <td th:text="${student.firstName}"></td>
+                                <td th:text="${student.lastName}"></td>
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- No Results Message -->
+                <div th:if="${students != null and #lists.isEmpty(students)}" class="mt-4">
+                    <p>No results found.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
