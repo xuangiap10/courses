@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/gardenLog">
+
+    <fragment
+        android:id="@+id/gardenLog"
+        android:name="com.cs473.gardening.ui.gardenLogScreen.GardenLogFragment"
+        android:label="Garden Log"
+        tools:layout="@layout/fragment_garden_log" >
+        <action
+            android:id="@+id/action_gardenLog_to_plantDetails"
+            app:destination="@id/plantDetails"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/plantDetails"
+        android:name="com.cs473.gardening.ui.plantDetailsScreen.PlantDetailsFragment"
+        android:label="Plant Details"
+        tools:layout="@layout/fragment_plant_details" >
+        <argument
+            android:name="plantID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_plantDetails_to_gardenLog"
+            app:destination="@id/gardenLog" />
+    </fragment>
+
+</navigation>
