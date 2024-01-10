@@ -1,0 +1,10 @@
+Instructions
+Given the provided minimal code snippet, your task is to dynamically localize the app to Chinese for displaying sunrise and sunset times fetched from https://sunrise-sunset.org/api. The initial code retrieves this information and sets the values on TextView in English. You are required to modify the code to dynamically localize it in Chinese.
+
+Instructions:
+1. Update the code to retrieve sunrise and sunset times from the API and set them on TextViews using Chinese localization.
+2. Utilize the appropriate language code for Chinese.
+3. Once completed, upload your modified code to your GitHub repository.
+4. Create a ReadMe file in the repository that includes a screenshot of the final output with Chinese localization.
+
+Ensure that your solution adheres to best practices and is well-documented.
