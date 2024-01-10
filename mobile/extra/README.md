@@ -10,6 +10,6 @@
 
 Screenshot Localized SunriseSet Explorer  | 
 :-------------------------:
-<img src="Screenshots/screenshot.png" width="300" height="600"/> | 
+<img src="ScreenShots/screenshot.png" width="300" height="600"/> | 
 
 
